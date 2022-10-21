@@ -9,6 +9,15 @@ try {
     $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
 
     echo 'Ok';
+
+    $result = pg_query($dsn, "SELECT * FROM test");
+    if (!$result) {
+        echo "An error occurred.\n";
+      }
+      
+      while ($row = pg_fetch_row($result)) {
+        echo "Test: $row[0] ";
+      }
 }
 catch (PDOException $e) {
 echo 'Connection failed: ' . $e->getMessage();
