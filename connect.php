@@ -20,7 +20,5 @@ while ($row = pg_fetch_all($result)){
     $resultList[] = $row;
 }
 
-
-
 echo json_encode($resultList);
 ?>
