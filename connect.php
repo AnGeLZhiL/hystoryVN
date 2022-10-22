@@ -13,4 +13,9 @@ if (!$result) {
   exit;
 }
 
+while ($row = pg_fetch_row($result)) {
+    echo "Автор: $row[0]";
+    echo "<br />\n";
+  }
+
 ?>
