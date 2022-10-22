@@ -8,6 +8,9 @@ if (!$dbconn4){
 }
 
 $result = pg_query($dbconn4, "SELECT test FROM test");
+
+print_r($result);
+
 if (!$result) {
   echo "Произошла ошибка.\n";
   exit;
@@ -19,7 +22,7 @@ while ($row = pg_fetch_assoc($result)){
     $resultList[] = $row;
 }
 
-print_r($result);
+
 
 echo json_encode($resultList);
 ?>
