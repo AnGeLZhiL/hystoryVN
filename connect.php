@@ -13,6 +13,8 @@ if (!$result) {
   exit;
 }
 
+print_r(json_encode($result));
+
 while ($row = pg_fetch_row($result)) {
     echo "Автор: $row[0]";
     echo "<br />\n";
