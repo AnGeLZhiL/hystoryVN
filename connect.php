@@ -9,8 +9,6 @@ if (!$dbconn4){
 
 $result = pg_query($dbconn4, "SELECT test FROM test");
 
-print_r($result);
-
 if (!$result) {
   echo "Произошла ошибка.\n";
   exit;
