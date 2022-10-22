@@ -5,7 +5,6 @@ $dbconn4 = pg_pconnect($conn_string);
 if (!$dbconn4){
     echo 'Nooo(((';
 }
-echo 'Yeees)';
 
 $result = pg_query($dbconn4, "SELECT test FROM test");
 if (!$result) {
