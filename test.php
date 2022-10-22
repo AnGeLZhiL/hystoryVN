@@ -7,6 +7,10 @@ $port = "5432";
 
 try {
     $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
+    
+    if (!$dsn){
+        echo 'Соединения нет';
+    }
 
     $result = pg_query($dsn, "SELECT * FROM test");
 //     if (!$result) {
