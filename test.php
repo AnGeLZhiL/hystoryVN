@@ -7,20 +7,24 @@ $port = "5432";
 
 try {
     $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
-    
+    echo '1';
     if (!$dsn){
         echo 'Соединения нет';
     }
-
+    echo '2';
     $result = pg_query($dsn, "SELECT test FROM test");
     if (!$result) {
+        echo '3';
         echo "An error occurred.\n";
       }
-      
+      echo '4';
       while ($row = pg_fetch_row($result)) {
+          echo '5';
         echo "Test: $row[0] ";
       }
+    echo '6';
     print_r($result);
+    echo '7';
 }
 catch (PDOException $e) {
 echo 'Connection failed: ' . $e->getMessage();
