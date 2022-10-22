@@ -7,24 +7,44 @@ $port = "5432";
 
 try {
     $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
+
+    $pdo = new PDO($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     echo '1';
     if (!$dsn){
         echo 'Соединения нет';
     }
     echo '2';
-    $result = pg_query($dsn, "SELECT test FROM test");
-    if (!$result) {
-        echo '3';
-        echo "An error occurred.\n";
-      }
-      echo '4';
-      while ($row = pg_fetch_row($result)) {
-          echo '5';
-        echo "Test: $row[0] ";
-      }
+
+    $sql = 'SELECT test FROM test';
+    echo '3';
+    $stmt = $pdo->prepare($sql);
+    echo '4';
+    $stmt->execute();
+    echo '5';
+    $rowCount = $stmt->rowCount();
     echo '6';
-    print_r($result);
+    $details = $stmt->fetch();
     echo '7';
+  
+    print_r ($details);
+
+    // $result = pg_query($dsn, "SELECT test FROM test");
+    // if (!$result) {
+    //     echo '3';
+    //     echo "An error occurred.\n";
+    //   }
+    //   echo '4';
+    //   while ($row = pg_fetch_row($result)) {
+    //       echo '5';
+    //     echo "Test: $row[0] ";
+    //   }
+    // echo '6';
+    // print_r($result);
+    // echo '7';
 }
 catch (PDOException $e) {
 echo 'Connection failed: ' . $e->getMessage();
