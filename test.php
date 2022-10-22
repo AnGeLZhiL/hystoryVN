@@ -30,7 +30,7 @@ try {
     $details = $stmt->fetch();
     echo '7';
   
-    print_r ($details);
+    print_r (json_encode($details));
 
     // $result = pg_query($dsn, "SELECT test FROM test");
     // if (!$result) {
