@@ -1,4 +1,5 @@
 <?php
+header('Content-type: json/application');
 
 $conn_string = "host=ec2-52-18-201-153.eu-west-1.compute.amazonaws.com port=5432 dbname=dfohkfn3fl717 user=txbqslbmnzrozh password=d9b28f2ef3fb10f7b9a1b08375fab0c770adae150712c294c58ebdaa9e96e7c5";
 $dbconn4 = pg_pconnect($conn_string);
@@ -13,13 +14,11 @@ if (!$result) {
   exit;
 }
 
-print_r(json_encode(pg_fetch_all($result)));
+$resultList = [];
 
+while ($row = pg_fetch_assoc($result)){
+    $resultList[] = $row;
+}
 
-
-// while ($row = pg_fetch_all($result)) {
-//     echo "Автор: $row[0]";
-//     echo "<br />\n";
-//   }
-
+echo json_encode($resultList);
 ?>
