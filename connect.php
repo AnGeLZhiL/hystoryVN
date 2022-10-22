@@ -16,7 +16,7 @@ if (!$result) {
 
 $resultList = [];
 
-while ($row = pg_fetch_all($result)){
+while ($row = pg_fetch_array($result)){
     $resultList[] = $row;
 }
 
