@@ -19,5 +19,7 @@ while ($row = pg_fetch_assoc($result)){
     $resultList[] = $row;
 }
 
+print_r($result);
+
 echo json_encode($resultList);
 ?>
