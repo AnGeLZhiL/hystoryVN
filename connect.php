@@ -15,7 +15,7 @@ if (!$result) {
 
 print_r($result);
 
-while ($row = pg_fetch_row($result)) {
+while ($row = pg_fetch_array($result)) {
     echo "Автор: $row[0]";
     echo "<br />\n";
   }
