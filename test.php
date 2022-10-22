@@ -12,14 +12,14 @@ try {
         echo 'Соединения нет';
     }
 
-    $result = pg_query($dsn, "SELECT * FROM test");
-//     if (!$result) {
-//         echo "An error occurred.\n";
-//       }
+    $result = pg_query($dsn, "SELECT test FROM test");
+    if (!$result) {
+        echo "An error occurred.\n";
+      }
       
-//       while ($row = pg_fetch_row($result)) {
-//         echo "Test: $row[0] ";
-//       }
+      while ($row = pg_fetch_row($result)) {
+        echo "Test: $row[0] ";
+      }
     print_r($result);
 }
 catch (PDOException $e) {
