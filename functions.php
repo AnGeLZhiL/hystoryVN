@@ -38,7 +38,7 @@ function addUser($dbconn4, $data){
     http_response_code(201);
 
     while ($id_user = pg_fetch_assoc($result)) {
-            echo "Test: $id_user[0] ";
+            print_r($id_user);
     }
 
     $res = [
