@@ -9,9 +9,15 @@ $q = $_GET['q'];
 
 $params = explode('/', $q);
 
-die(print_r($params));
+$type = $params[0];
+$id = $params[1];
 
 if ($type === 'users'){
-    getUsers($dbconn4);
+
+    if (isset($id)){
+        getUser($dbconn4, $id);
+    } else {
+        getUsers($dbconn4);
+    }    
 }
 ?>
