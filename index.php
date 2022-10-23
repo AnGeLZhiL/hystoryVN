@@ -9,7 +9,7 @@ $q = $_GET['q'];
 
 $params = explode('/', $q);
 
-die(print_r($q));
+die(print_r($params));
 
 if ($type === 'users'){
     getUsers($dbconn4);
