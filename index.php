@@ -1,6 +1,8 @@
 <?php
 require 'connect.php';
 
+header('Content-Type: application/json; charset=utf-8');
+
 $users = pg_query($dbconn4, "SELECT * FROM users");
 
 $usersList = [];
