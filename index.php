@@ -9,6 +9,6 @@ while ($user = pg_fetch_assoc($users)){
     $usersList[] = $user;
 }
 
-print_r(usersList);
+echo json_encode($usersList);
 
 ?>
