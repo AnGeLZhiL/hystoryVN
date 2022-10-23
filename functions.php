@@ -12,6 +12,7 @@ function getUser($dbconn4, $id){
     $user = pg_query($dbconn4, "SELECT * FROM users where id = '$id'");
 
     if (pg_num_rows($user) === 0){
+        http_response_code(404);
         $res = [
             "status" => false,
             "message" => "User not found"
