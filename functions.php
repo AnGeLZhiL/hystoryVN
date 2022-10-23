@@ -37,7 +37,7 @@ function addUser($dbconn4, $data){
 
     http_response_code(201);
 
-    $id_user = pg_fetch_odject($result);
+    $id_user = pg_fetch_assoc($result);
 
     $id_user = current($id_user);
     echo $id_user;
