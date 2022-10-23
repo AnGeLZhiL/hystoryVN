@@ -37,7 +37,7 @@ function addUser($dbconn4, $data){
 
     http_response_code(201);
     
-    print_r($result);
+    print_r(json_encode($result));
 
     $res = [
         "status" => true,
