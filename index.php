@@ -1,5 +1,8 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json; charset=utf-8');
 
 require 'connect.php';
@@ -27,6 +30,4 @@ if ($method === 'GET'){
         addUser($dbconn4, $_POST);
     }
 }
-
-
 ?>
