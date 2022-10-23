@@ -23,4 +23,27 @@ function getUser($dbconn4, $id){
         echo json_encode($user);
     }
 }
+
+function addUser($dbconn4, $data){
+    $user_last_name = $data['user_last_name'];
+    $user_first_name = $data['user_first_name'];
+    $user_midlle_name = $data['user_midlle_name'];
+    $user_login = $data['user_login'];
+    $user_password = $data['user_password'];
+    $user_role = $data['user_role'];
+
+    pg_query($dbconn4, "INSERT INTO users(
+        user_last_name, user_first_name, user_midlle_name, user_login, user_password, user_role)
+        VALUES ('$user_last_name', '$user_first_name', '$user_midlle_name', '$user_login', '$user_password', 1)");
+
+    http_response_code(201);
+
+    $res = [
+        "status" => true,
+        "user_id" => pg_last_oid($dbconn4)
+    ];
+
+    echo json_encode($res);
+}
+
 ?>
