@@ -36,10 +36,10 @@ function addUser($dbconn4, $data){
         VALUES ('$user_last_name', '$user_first_name', '$user_midlle_name', '$user_login', '$user_password', 1) RETURNING id");
 
     http_response_code(201);
-    
-    $user_id = pg_fetch_assoc($result);
 
-    print_r($user_id[0]);
+    while ($id_user = pg_fetch_assoc($result)) {
+            echo "Test: $id_user[0] ";
+    }
 
     $res = [
         "status" => true,
