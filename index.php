@@ -1,18 +1,20 @@
 <?php
-require 'connect.php';
-
-die($_GET['q']);
 
 header('Content-Type: application/json; charset=utf-8');
 
-$users = pg_query($dbconn4, "SELECT * FROM users");
+require 'connect.php';
 
-$usersList = [];
+$type = $_GET['q'];
 
-while ($user = pg_fetch_assoc($users)){
-    $usersList[] = $user;
+if ($type === 'users'){
+    $users = pg_query($dbconn4, "SELECT * FROM users");
+    $usersList = [];
+    while ($user = pg_fetch_assoc($users)){
+        $usersList[] = $user;
+    }
+    echo json_encode($usersList);
 }
 
-echo json_encode($usersList);
+
 
 ?>
