@@ -33,12 +33,11 @@ function addUser($dbconn4, $data){
 
     $result = pg_query($dbconn4, "INSERT INTO users(
         user_last_name, user_first_name, user_midlle_name, user_login, user_password, user_role)
-        VALUES ('$user_last_name', '$user_first_name', '$user_midlle_name', '$user_login', '$user_password', 1)");
+        VALUES ('$user_last_name', '$user_first_name', '$user_midlle_name', '$user_login', '$user_password', 1) RETURNING id");
 
     http_response_code(201);
-
-    $insert_row = pg_fetch_row($result);
-    $insert_id = $insert_row[0];
+    
+    echo $result;
 
     $res = [
         "status" => true,
