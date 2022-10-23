@@ -30,7 +30,6 @@ function addUser($dbconn4, $data){
     $user_midlle_name = $data['user_midlle_name'];
     $user_login = $data['user_login'];
     $user_password = $data['user_password'];
-    $user_role = $data['user_role'];
 
     pg_query($dbconn4, "INSERT INTO users(
         user_last_name, user_first_name, user_midlle_name, user_login, user_password, user_role)
