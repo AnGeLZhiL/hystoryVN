@@ -31,15 +31,18 @@ function addUser($dbconn4, $data){
     $user_login = $data['user_login'];
     $user_password = $data['user_password'];
 
-    pg_query($dbconn4, "INSERT INTO users(
+    $result = pg_query($dbconn4, "INSERT INTO users(
         user_last_name, user_first_name, user_midlle_name, user_login, user_password, user_role)
         VALUES ('$user_last_name', '$user_first_name', '$user_midlle_name', '$user_login', '$user_password', 1)");
 
     http_response_code(201);
 
+    $insert_row = pg_fetch_row($result);
+    $insert_id = $insert_row[0];
+
     $res = [
         "status" => true,
-        "user_id" => pg_last_oid($dbconn4)
+        "id" => $insert_id
     ];
 
     echo json_encode($res);
