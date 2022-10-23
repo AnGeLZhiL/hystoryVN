@@ -10,7 +10,16 @@ function getUsers($dbconn4){
 
 function getUser($dbconn4, $id){
     $user = pg_query($dbconn4, "SELECT * FROM users where id = '$id'");
-    $user = pg_fetch_assoc($user);
-    echo json_encode($user);
+
+    if (pg_num_rows($user) === 0){
+        $res = [
+            "status" => false,
+            "message" => "User not found"
+        ];
+        echo json_encode($res);
+    } else {
+        $user = pg_fetch_assoc($user);
+        echo json_encode($user);
+    }
 }
 ?>
