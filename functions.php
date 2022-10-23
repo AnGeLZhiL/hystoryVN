@@ -7,4 +7,10 @@ function getUsers($dbconn4){
     }
     echo json_encode($usersList);
 }
+
+function getUser($dbconn4, $id){
+    $user = pg_query($dbconn4, "SELECT * FROM users where id = '$id'");
+    $user = pg_fetch_assoc($user);
+    echo json_encode($user);
+}
 ?>
