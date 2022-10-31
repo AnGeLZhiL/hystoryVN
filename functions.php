@@ -77,7 +77,7 @@ function loginUser($dbconn4, $data){
     //     ];
 
     //     echo json_encode($res);
-    }
+    // }
 }
 
 ?>
