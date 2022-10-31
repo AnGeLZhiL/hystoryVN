@@ -48,4 +48,32 @@ function addUser($dbconn4, $data){
     echo json_encode($res);
 }
 
+function loginUser($dbconn4, $data){
+    $user_login = $data['user_login'];
+    $user_password = $data['user_password'];
+
+    $result = pg_query($dbconn4, "SELECT * FROM users where user_login = '$user_login' and user_password = '$user_password'");
+
+    if (pg_num_rows($result) === 0){
+        http_response_code(404);
+        $res = [
+            "status" => false,
+            "message" => "User not found"
+        ];
+        echo json_encode($res);
+    } else {
+        http_response_code(201);
+
+        $id_user = pg_fetch_assoc($result);
+        $id_user = current($id_user);
+
+        $res = [
+            "status" => true,
+            "id" => $id_user
+        ];
+
+        echo json_encode($res);
+    }
+}
+
 ?>
