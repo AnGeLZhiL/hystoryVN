@@ -52,9 +52,9 @@ function loginUser($dbconn4, $data){
     $user_login = $data['user_login'];
     $user_password = $data['user_password'];
 
-    $result = pg_query($dbconn4, "SELECT * FROM users where user_login = '$user_login' and user_password = '$user_password'");
+    $user = pg_query($dbconn4, "SELECT * FROM users where user_login = '$user_login' and user_password = '$user_password'");
 
-    if (pg_num_rows($result) === 0){
+    if (pg_num_rows($user) === 0){
         http_response_code(404);
         $res = [
             "status" => false,
@@ -62,17 +62,21 @@ function loginUser($dbconn4, $data){
         ];
         echo json_encode($res);
     } else {
-        http_response_code(201);
+        $user = pg_fetch_assoc($user);
+        echo json_encode($user);
+    }
 
-        $id_user = pg_fetch_assoc($result);
-        $id_user = current($id_user);
+    // echo json_encode($usersList);
 
-        $res = [
-            "status" => true,
-            "id" => $id_user
-        ];
+    //     $id_user = pg_fetch_assoc($result);
+    //     $id_user = current($id_user);
 
-        echo json_encode($res);
+    //     $res = [
+    //         "status" => true,
+    //         "id" => $id_user
+    //     ];
+
+    //     echo json_encode($res);
     }
 }
 
