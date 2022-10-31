@@ -26,8 +26,11 @@ if ($method === 'GET'){
         }    
     }
 } elseif ($method === 'POST') {
-    if ($type === 'users'){
+    if ($type === 'register'){
         addUser($dbconn4, $_POST);
+    }
+    if ($type === 'login'){
+        loginUser($dbconn4, $_POST);
     }
 }
 ?>
