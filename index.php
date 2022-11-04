@@ -24,7 +24,8 @@ if ($method === 'GET'){
         } else {
             getUsers($dbconn4);
         }    
-    } elseif ($type === 'categories'){
+    }
+    if ($type === 'categories'){
         if (isset($id)){
             getCategory($dbconn4, $id);
         } else {
@@ -39,7 +40,4 @@ if ($method === 'GET'){
         loginUser($dbconn4, $_POST);
     }
 }
-?>
-
-
 ?>
