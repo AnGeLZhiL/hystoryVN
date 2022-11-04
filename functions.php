@@ -24,6 +24,31 @@ function getUser($dbconn4, $id){
     }
 }
 
+function getCategories($dbconn4){
+    $categories = pg_query($dbconn4, "SELECT * FROM v_categories");
+    $categoriesList = [];
+    while ($category = pg_fetch_assoc($categories)){
+        $categoriesList[] = $category;
+    }
+    echo json_encode($categoriesList);
+}
+
+function getCategory($dbconn4, $id){
+    $category = pg_query($dbconn4, "SELECT * from v_categories where id = '$id'");
+
+    if (pg_num_rows($category) === 0){
+        http_response_code(404);
+        $res = [
+            "status" => false,
+            "message" => "Category not found"
+        ];
+        echo json_encode($res);
+    } else {
+        $category = pg_fetch_assoc($category);
+        echo json_encode($category);
+    }
+}
+
 function addUser($dbconn4, $data){
     $user_last_name = $data['user_last_name'];
     $user_first_name = $data['user_first_name'];
@@ -65,19 +90,6 @@ function loginUser($dbconn4, $data){
         $user = pg_fetch_assoc($user);
         echo json_encode($user);
     }
-
-    // echo json_encode($usersList);
-
-    //     $id_user = pg_fetch_assoc($result);
-    //     $id_user = current($id_user);
-
-    //     $res = [
-    //         "status" => true,
-    //         "id" => $id_user
-    //     ];
-
-    //     echo json_encode($res);
-    // }
 }
 
 ?>
