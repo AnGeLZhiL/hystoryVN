@@ -92,4 +92,29 @@ function loginUser($dbconn4, $data){
     }
 }
 
+function getTests($dbconn4){
+    $categories = pg_query($dbconn4, "SELECT * FROM tests");
+    $categoriesList = [];
+    while ($category = pg_fetch_assoc($categories)){
+        $categoriesList[] = $category;
+    }
+    echo json_encode($categoriesList);
+}
+
+function getTest($dbconn4, $id){
+    $category = pg_query($dbconn4, "SELECT * from tests where id = '$id'");
+
+    if (pg_num_rows($category) === 0){
+        http_response_code(404);
+        $res = [
+            "status" => false,
+            "message" => "Test not found"
+        ];
+        echo json_encode($res);
+    } else {
+        $category = pg_fetch_assoc($category);
+        echo json_encode($category);
+    }
+}
+
 ?>
