@@ -32,6 +32,13 @@ if ($method === 'GET'){
             getCategories($dbconn4);
         } 
     }
+    if ($type === 'tests'){
+        if (isset($id)){
+            getTest($dbconn4, $id);
+        } else {
+            getTests($dbconn4);
+        } 
+    }
 } elseif ($method === 'POST') {
     if ($type === 'register'){
         addUser($dbconn4, $_POST);
