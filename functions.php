@@ -117,4 +117,20 @@ function getTest($dbconn4, $id){
     }
 }
 
+function getUserTests($dbconn4, $id){
+    $usertest = pg_query($dbconn4, "SELECT * from users_tests_attempt where id = '$id'");
+
+    if (pg_num_rows($usertest) === 0){
+        http_response_code(404);
+        $res = [
+            "status" => false,
+            "message" => "Test user not found"
+        ];
+        echo json_encode($res);
+    } else {
+        $usertest = pg_fetch_assoc($usertest);
+        echo json_encode($usertest);
+    }
+}
+
 ?>
