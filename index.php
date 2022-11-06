@@ -39,6 +39,9 @@ if ($method === 'GET'){
             getTests($dbconn4);
         } 
     }
+    if ($type === 'userstests'){
+        getUserTests($dbconn4, $id);
+    }
 } elseif ($method === 'POST') {
     if ($type === 'register'){
         addUser($dbconn4, $_POST);
