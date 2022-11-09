@@ -124,7 +124,7 @@ function getUserTests($dbconn4, $id){
     while ($test = pg_fetch_assoc($usertest)){
         $usertestsList[] = $test;
     }
-    echo json_encode($categoriesList);
+    echo json_encode($usertestsList);
 }
 
 ?>
