@@ -130,7 +130,7 @@ function getUserTests($dbconn4, $id){
     } else {
         $userstestsList = [];
         while ($usertest = pg_fetch_assoc($usertest)){
-            $categoriesList[] = $usertest;
+            $userstestsList[] = $usertest;
         }
         echo json_encode($userstestsList);
     }
